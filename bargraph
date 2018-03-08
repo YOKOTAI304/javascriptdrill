@@ -1,0 +1,45 @@
+<script src="https://d3js.org/d3.v5.js"></script>
+
+<h1>Demo of bar chart in D3</h1>
+
+<svg>
+    <text x=10 y=10>bars</text>
+</svg>
+
+<script>
+    var svg = d3.select('svg');
+    // svg.remove();
+    var data = [{
+        'height': 170,
+        'weight': 70,
+    }, {
+        'height': 160,
+        'weight': 50,
+    }, {
+        'height': 180,
+        'weight': 70,
+    }, {
+        'height': 180,
+        'weight': 80,
+    }, {
+        'height': 100,
+        'weight': 40,
+    }, ];
+    var frameHeight = 150;
+    svg
+        .selectAll('rectangle')
+        .data(data)
+        .enter()
+        .append('rectangle')
+        .attr('x', function(d) {
+            return d['height'];
+        })
+        .attr('y', function(d) {
+            return frameHeight - d['weight'];
+        })
+        .attr('r', function(d) {
+            // return d['weight'] / 10;
+            return Math.sqrt(d['weight']);
+        })
+        .attr('fill', '#ff0000');
+</script>
